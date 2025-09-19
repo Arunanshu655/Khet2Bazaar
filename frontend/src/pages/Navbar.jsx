@@ -1,4 +1,4 @@
-import { Wheat, HomeIcon, Wallet, LucideLayoutDashboard } from 'lucide-react';
+import { Wheat, HomeIcon, Wallet, LucideLayoutDashboard, LucideLanguages } from 'lucide-react';
 
 const Navbar = () => {
   return (
@@ -25,6 +25,10 @@ const Navbar = () => {
             <div className="flex items-center space-x-2 text-gray-700 cursor-pointer hover:text-green-800">
               <Wallet className="w-5 h-5" />
               <span className="text-sm">Connect Wallet</span>
+            </div>
+              <div className="flex items-center space-x-2 text-gray-700 cursor-pointer hover:text-green-800">
+              <LucideLanguages className="w-5 h-5" />
+              <span className="text-sm">Languages</span>
             </div>
           </div>
         </div>
