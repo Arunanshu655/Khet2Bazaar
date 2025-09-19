@@ -1,4 +1,4 @@
-import { Wheat, HomeIcon, Wallet, LucideLayoutDashboard, LucideLanguages, LineChart } from 'lucide-react';
+import { Wheat, HomeIcon, Wallet, LucideLayoutDashboard, LucideLanguages, LineChart , User} from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
@@ -32,6 +32,10 @@ const Navbar = () => {
             <div className="flex items-center space-x-2 text-gray-700 cursor-pointer hover:text-green-800">
               <LucideLanguages className="w-5 h-5" />
               <span className="text-sm">Languages</span>
+            </div>
+            <div className="flex items-center space-x-2 text-gray-700 cursor-pointer hover:text-green-800">
+              <User className="w-5 h-5" />
+              <span className="text-sm">Profile</span>
             </div>
           </div>
         </div>
