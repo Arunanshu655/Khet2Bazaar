@@ -33,3 +33,8 @@ jspm_packages/
 .env.test.local
 .env.production.local
 
+lib
+include
+Scripts
+*.cfg
+**/__pycache__/
