@@ -217,7 +217,7 @@ const Home = () => {
             </div>
 
             {/* Role Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <div className="grid grid-cols-6 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-16">
               {Object.entries(roleConfig).map(([role, config]) => (
                 <RoleCard
                   key={role}
@@ -230,7 +230,7 @@ const Home = () => {
             </div>
 
             {/* Registration Form */}
-            <div className="max-w-lg mx-auto">
+            {/* <div className="max-w-lg mx-auto">
               <div className="bg-gradient-to-br from-green-50 to-green-100 p-10 rounded-2xl shadow-lg">
                 <div className="space-y-6">
                   <div>
@@ -305,7 +305,7 @@ const Home = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
