@@ -102,9 +102,7 @@ const Login = () => {
               <p className="text-sm text-gray-600 mb-6">
                 {welcome.description}
               </p>
-              <p className="text-xs text-gray-500">
-                Friday, 19 September 2025
-              </p>
+
             </div>
 
             {/* Role Selection */}
