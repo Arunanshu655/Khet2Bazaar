@@ -1,7 +1,8 @@
+// Dashboard.jsx
 import React, { useState, useEffect } from 'react';
 import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-// Icon component placeholder - replace with your actual Icon component
+// Icon component placeholder
 const Icon = ({ name, size = 16, color, className = '' }) => {
   const iconMap = {
     'Play': '▶️',

@@ -1,4 +1,5 @@
-import { Wheat,LogOut, HomeIcon, Wallet, LucideLayoutDashboard, LucideLanguages, LineChart , User} from 'lucide-react';
+//Navbar.jsx
+import { Wheat,LogOut, HomeIcon, Wallet, LucideLayoutDashboard, LucideLanguages, LineChart , User, LucideUser, LucideUpload} from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useWallet } from '../contexts/WalletContext';
 import {useEffect} from 'react'
@@ -86,14 +87,25 @@ const Navbar = () => {
               </>
             )}
             </div>
-            <div className="flex items-center space-x-2 text-gray-700 cursor-pointer hover:text-green-800">
+            {/* <div className="flex items-center space-x-2 text-gray-700 cursor-pointer hover:text-green-800">
               <LucideLanguages className="w-5 h-5" />
               <span className="text-sm">Languages</span>
-            </div>
-            <div className="flex items-center space-x-2 text-gray-700 cursor-pointer hover:text-green-800">
-              <User className="w-5 h-5" />
+            </div> */}
+                        <Link to="/profile" className={`flex items-center space-x-2 text-gray-700 cursor-pointer hover:text-green-800 ${location.pathname === '/profile' ? 'text-green-600' : ''}`}>
+              <LucideUser className="w-5 h-5" />
               <span className="text-sm">Profile</span>
-            </div>
+              
+            </Link>
+                                    <Link to="/upload" className={`flex items-center space-x-2 text-gray-700 cursor-pointer hover:text-green-800 ${location.pathname === '/upload' ? 'text-green-600' : ''}`}>
+              <LucideUpload className="w-5 h-5" />
+              <span className="text-sm">Upload</span>
+            </Link>
+            
+                                    <Link to="/" className={`flex items-center space-x-2 text-gray-700 cursor-pointer hover:text-green-800 ${location.pathname === '/' ? 'text-green-600' : ''}`}>
+              <LucideLanguages className="w-5 h-5" />
+            </Link>
+            
+      
           </div>
         </div>
       </div>
