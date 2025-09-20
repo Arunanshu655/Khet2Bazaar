@@ -42,7 +42,7 @@ const Navbar = () => {
       
       // toast.success("Metamask connected successfully!");
     } catch (error) {
-      // toast.error("Failed to connect wallet ❌");
+      // toast.error("Failed to connect wallet");
       console.log("error : ", error)
     }
   }
