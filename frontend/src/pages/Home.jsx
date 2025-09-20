@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [selectedRole, setSelectedRole] = useState('farmer');
@@ -185,20 +186,31 @@ const Home = () => {
             
             <div className="flex flex-wrap justify-center gap-16 mb-16">
               <div className="text-center">
-                <div className="text-4xl font-bold text-green-600 mb-2">600M+</div>
+                <div className="text-4xl font-bold text-green-600 mb-2">0M+</div>
                 <div className="text-gray-500 text-sm uppercase tracking-wide">Indian Farmers</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-green-600 mb-2">23%</div>
+                <div className="text-4xl font-bold text-green-600 mb-2">0%</div>
                 <div className="text-gray-500 text-sm uppercase tracking-wide">Current Farmer Share</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-green-600 mb-2">40%</div>
+                <div className="text-4xl font-bold text-green-600 mb-2">0%</div>
                 <div className="text-gray-500 text-sm uppercase tracking-wide">Food Waste Reduced</div>
               </div>
             </div>
           </div>
         </div>
+<div className="flex justify-center">
+  <button  
+    className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:transform hover:-translate-y-0.5 transition-all duration-200"
+  >
+    <Link to="/signup">
+      Get Started
+    </Link>
+  </button>
+</div>
+
+
       </section>
 
       {/* Role Selection Section */}

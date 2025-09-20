@@ -4,7 +4,7 @@ import { Wheat, Truck, Store, Upload as UploadIcon, Camera, Calendar, User, File
 import Navbar from './Navbar';
 
 const Upload = () => {
-  const [userRole, setUserRole] = useState('farmer'); // This would come from your auth context
+  const [userRole, setUserRole] = useState('farmer'); // This would come from auth context
   const [selectedBatch, setSelectedBatch] = useState(null);
   const [availableBatches, setAvailableBatches] = useState([
     {
@@ -88,7 +88,7 @@ const Upload = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Upload submitted:', { ...formData, role: userRole, selectedBatch });
-    // Add your upload logic here
+    // Add upload logic here
   };
 
   const handleBatchSelect = (batch) => {

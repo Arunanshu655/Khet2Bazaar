@@ -22,6 +22,8 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/upload" element={<Upload />} />
+            {/* <Route path="/login" element={<Login />} /> */}
+
 
           </Routes>
         </div>
