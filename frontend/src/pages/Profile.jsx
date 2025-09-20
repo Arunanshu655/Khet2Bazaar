@@ -1,3 +1,4 @@
+// Profile.jsx
 import { useState } from 'react';
 import { 
   User, MapPin, Calendar, Phone, Mail, Building, CheckCircle, 
