@@ -47,7 +47,7 @@ const Home = () => {
     {
       icon: "🔗",
       title: "Blockchain Transparency",
-      description: "Every transaction is recorded on an immutable blockchain, ensuring complete transparency from farm to fork with tamper-proof records."
+      description: "Every transaction is recorded on an immutable blockchain, ensuring complete transparency from Khet to Bazaar with tamper-proof records."
     },
     {
       icon: "🤝",
@@ -176,7 +176,7 @@ const Home = () => {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-green-700 to-green-500 bg-clip-text text-transparent leading-tight">
-              From Farm to Fork with Complete Transparency
+              From Khet to Bazaar with Complete Transparency
             </h1>
             
             <p className="text-xl text-gray-600 mb-12 leading-relaxed">
@@ -186,15 +186,15 @@ const Home = () => {
             
             <div className="flex flex-wrap justify-center gap-16 mb-16">
               <div className="text-center">
-                <div className="text-4xl font-bold text-green-600 mb-2">0M+</div>
+                <div className="text-4xl font-bold text-green-600 mb-2">600M+</div>
                 <div className="text-gray-500 text-sm uppercase tracking-wide">Indian Farmers</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-green-600 mb-2">0%</div>
+                <div className="text-4xl font-bold text-green-600 mb-2">23%</div>
                 <div className="text-gray-500 text-sm uppercase tracking-wide">Current Farmer Share</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-green-600 mb-2">0%</div>
+                <div className="text-4xl font-bold text-green-600 mb-2">40%</div>
                 <div className="text-gray-500 text-sm uppercase tracking-wide">Food Waste Reduced</div>
               </div>
             </div>

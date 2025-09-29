@@ -3,12 +3,15 @@ import { useState } from 'react';
 import { 
   User, MapPin, Calendar, Phone, Mail, Building, CheckCircle, 
   AlertCircle, Clock, Share, Edit, Plus, FileText, Download, 
-  Shield, Settings, ArrowRight, Eye, Star, Award, Verified
+  Shield, Settings, ArrowRight, Eye, Star, Award, Verified, 
+  ArrowDownLeft, ArrowUpRight, Copy, Check, ExternalLink
 } from 'lucide-react';
+
 import Navbar from './Navbar';
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState('overview');
+  const [copiedTx, setCopiedTx] = useState(null);
   
   // Mock user data
   const userData = {
@@ -109,6 +112,62 @@ const Profile = () => {
       icon: "♻"
     }
   ];
+   // Mock transaction data
+  const transactions = [
+    {
+      id: 1,
+      txHash: "0x8f3d2c1b4a5e6f7890abcdef1234567890abcdef1234567890abcdef12345678",
+      badgeNumber: "TXN-2024-001",
+      from: "0x742d35Cc6634C0532925a3b844Bc9e7595f9c8a",
+      to: "0x8A2e4D1f3B7c9A5E8D6F2C4B1A9E7D3F5C8B6A4E",
+      amount: "₹12,500",
+      crop: "Organic Wheat",
+      date: "2024-01-25",
+      time: "14:30:22",
+      status: "completed",
+      type: "received"
+    },
+    {
+      id: 2,
+      txHash: "0x1a2b3c4d5e6f7890abcdef1234567890abcdef1234567890abcdef1234567890",
+      badgeNumber: "TXN-2024-002",
+      from: "0x742d35Cc6634C0532925a3b844Bc9e7595f9c8a",
+      to: "0x3E7A9B2D4C6F8E1A5D9C3B7E2F4A8D6C1E9B5A7D",
+      amount: "₹8,750",
+      crop: "Mustard Seeds",
+      date: "2024-01-24",
+      time: "10:15:45",
+      status: "completed",
+      type: "received"
+    },
+    {
+      id: 3,
+      txHash: "0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890",
+      badgeNumber: "TXN-2024-003",
+      from: "0x742d35Cc6634C0532925a3b844Bc9e7595f9c8a",
+      to: "0x6B4A8D2E9C5F1A7D3E8B4C6A2D9F5E1B7C4A8D3E",
+      amount: "₹15,200",
+      crop: "Organic Vegetables",
+      date: "2024-01-22",
+      time: "16:45:12",
+      status: "completed",
+      type: "sent"
+    },
+    {
+      id: 4,
+      txHash: "0x567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234",
+      badgeNumber: "TXN-2024-004",
+      from: "0x9D3E5B7A2C4F8E1D6A9B5C7E2D4F8A6C1E9B3D5A",
+      to: "0x742d35Cc6634C0532925a3b844Bc9e7595f9c8a",
+      amount: "₹20,000",
+      crop: "Wheat Bulk Order",
+      date: "2024-01-20",
+      time: "09:20:33",
+      status: "completed",
+      type: "received"
+    },
+  
+  ];
 
   const quickActions = [
     { title: "Edit Profile", description: "Update your personal information", icon: Edit },
@@ -135,6 +194,20 @@ const Profile = () => {
       case 'expired': return AlertCircle;
       default: return AlertCircle;
     }
+  };
+
+    const shortenAddress = (address) => {
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+  };
+
+  const shortenTxHash = (hash) => {
+    return `${hash.slice(0, 10)}...${hash.slice(-8)}`;
+  };
+
+  const copyToClipboard = (text, id) => {
+    navigator.clipboard.writeText(text);
+    setCopiedTx(id);
+    setTimeout(() => setCopiedTx(null), 2000);
   };
 
   return (
@@ -318,6 +391,146 @@ const Profile = () => {
                 </div>
               </div>
             </div>
+                      {/* Transaction History Section */}
+          <div className="bg-white rounded-lg border mb-6">
+            <div className="p-6 border-b border-gray-200">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <FileText className="w-5 h-5 text-gray-600" />
+                  <h3 className="text-lg font-semibold text-gray-900">Transaction History</h3>
+                </div>
+                <button className="text-green-800 hover:text-green-700 text-sm font-medium">
+                  View All
+                </button>
+              </div>
+              <p className="text-sm text-gray-600 mt-1">Your recent blockchain transactions</p>
+            </div>
+            <div className="p-6">
+              <div className="space-y-3">
+                {transactions.map((tx) => {
+                  const StatusIcon = getStatusIcon(tx.status);
+                  const isReceived = tx.type === 'received';
+                  
+                  return (
+                    <div key={tx.id} className="border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex items-center space-x-3">
+                          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                            isReceived ? 'bg-green-100' : 'bg-blue-100'
+                          }`}>
+                            {isReceived ? (
+                              <ArrowDownLeft className="w-5 h-5 text-green-600" />
+                            ) : (
+                              <ArrowUpRight className="w-5 h-5 text-blue-600" />
+                            )}
+                          </div>
+                          <div>
+                            <div className="flex items-center space-x-2">
+                              <span className="font-medium text-gray-900">{tx.crop}</span>
+                              <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${getStatusColor(tx.status)}`}>
+                                <StatusIcon className="w-3 h-3 mr-1" />
+                                {tx.status === 'completed' ? 'Completed' : 'Pending'}
+                              </span>
+                            </div>
+                            <div className="flex items-center space-x-2 text-xs text-gray-500 mt-1">
+                              <span>{tx.date}</span>
+                              <span>•</span>
+                              <span>{tx.time}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className={`text-lg font-semibold ${
+                            isReceived ? 'text-green-600' : 'text-gray-900'
+                          }`}>
+                            {isReceived ? '+' : '-'}{tx.amount}
+                          </div>
+                          <div className="text-xs text-gray-500 mt-1">
+                            {isReceived ? 'Received' : 'Sent'}
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-2 pt-3 border-t border-gray-100">
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-gray-500">Badge Number:</span>
+                          <span className="font-mono text-gray-900 font-medium">{tx.badgeNumber}</span>
+                        </div>
+                        
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-gray-500">Transaction Hash:</span>
+                          <div className="flex items-center space-x-2">
+                            <span className="font-mono text-gray-700 text-xs">
+                              {shortenTxHash(tx.txHash)}
+                            </span>
+                            <button
+                              onClick={() => copyToClipboard(tx.txHash, `hash-${tx.id}`)}
+                              className="text-gray-400 hover:text-gray-600 transition-colors"
+                            >
+                              {copiedTx === `hash-${tx.id}` ? (
+                                <Check className="w-4 h-4 text-green-600" />
+                              ) : (
+                                <Copy className="w-4 h-4" />
+                              )}
+                            </button>
+                            <a
+                              href={`https://etherscan.io/tx/${tx.txHash}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-gray-400 hover:text-gray-600 transition-colors"
+                            >
+                              <ExternalLink className="w-4 h-4" />
+                            </a>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-gray-500">From:</span>
+                          <div className="flex items-center space-x-2">
+                            <span className="font-mono text-gray-700 text-xs">
+                              {shortenAddress(tx.from)}
+                            </span>
+                            <button
+                              onClick={() => copyToClipboard(tx.from, `from-${tx.id}`)}
+                              className="text-gray-400 hover:text-gray-600 transition-colors"
+                            >
+                              {copiedTx === `from-${tx.id}` ? (
+                                <Check className="w-4 h-4 text-green-600" />
+                              ) : (
+                                <Copy className="w-4 h-4" />
+                              )}
+                            </button>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-gray-500">To:</span>
+                          <div className="flex items-center space-x-2">
+                            <span className="font-mono text-gray-700 text-xs">
+                              {shortenAddress(tx.to)}
+                            </span>
+                            <button
+                              onClick={() => copyToClipboard(tx.to, `to-${tx.id}`)}
+                              className="text-gray-400 hover:text-gray-600 transition-colors"
+                            >
+                              {copiedTx === `to-${tx.id}` ? (
+                                <Check className="w-4 h-4 text-green-600" />
+                              ) : (
+                                <Copy className="w-4 h-4" />
+                              )}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6"> */}
+
 
             {/* Farm Information */}
             <div className="bg-white rounded-lg border">
